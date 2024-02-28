@@ -1,3 +1,5 @@
+let textoResultado = document.getElementById("textoResultado");
+
 function hideOutputText() {
   document.getElementById("botao-output").style.display = "";
   document.getElementById("textoResultado").removeAttribute("hidden");
@@ -7,7 +9,8 @@ function hideOutputText() {
 }
 
 function exibeMensagem(mensagem) {
-  document.getElementById("textoResultado").innerHTML = mensagem;
+  textoResultado.innerHTML = mensagem;
+  hideOutputText();
 }
 
 function botaoLimparTexto() {
@@ -20,45 +23,55 @@ function botaoLimparTexto() {
   document.getElementById("texto-entrada").value = "";
 }
 function botaoCopiarTexto() {
-  if (plainTextFinal == "") {
-    navigator.clipboard.writeText(cipherTextFinal);
-  } else {
-    navigator.clipboard.writeText(plainTextFinal);
-  }
-  alert("Texto copiado para a área de transferência!");
+  var content = document.getElementById("textoResultado").innerHTML;
+
+  navigator.clipboard
+    .writeText(content)
+    .then(() => {
+      console.log("Texto copiado para a área de transferência...");
+    })
+    .catch((err) => {
+      console.log("Algo deu errado", err);
+    });
 }
 
-let cripto = {
-  e: "enter",
-  i: "imes",
-  a: "ai",
-  o: "ober",
-  u: "ufat",
+let strTeste =
+  "pairaibenterns poberr enterncairair enterssenter dentersaifimesober enter tenterr fimesnailimeszaidober enterlenter coberm sufatcenterssober!";
+
+const cifrar = (texto) => {
+  let preCifra = {
+    e: "enter",
+    i: "imes",
+    a: "ai",
+    o: "ober",
+    u: "ufat",
+  };
+
+  let arrString = texto.split("");
+  let arrResult = arrString.map((s) => (s in preCifra ? preCifra[s] : s));
+  return arrResult.join("");
 };
 
-let cifra = { enter: "e", imes: "i", ai: "a", ober: "o", ufat: "ufat" };
-function decifrar(texto) {}
-let teste = "gato";
+const decifrar = (texto) => {
+  let posCifra = { enter: "e", imes: "i", ai: "a", ober: "o", ufat: "u" };
 
-let arrString = teste.split("");
-
-let arrResult = arrString.map((s) => (s in cripto ? cripto[s] : s));
-
-console.log(arrResult.join(""));
-console.log("arrResult");
-console.log();
-
-const decifrar = (searhString, pattern) =>
-  [...searhString.matchAll(new RegExp(pattern, "gi"))].map((a) => a.index);
-
-for (const [key, value] of Object.entries(cifra)) {
-  console.log(decifrar(decifrar, key));
-  console.log(key, value);
+  for (const [key, value] of Object.entries(posCifra)) {
+    texto = texto.replaceAll(key, value);
+  }
+  return texto;
+};
+function codificarTexto() {
+  let texto = document.getElementById("texto-entrada").value;
+  exibeMensagem(cifrar(texto));
 }
-let texto = decifrar;
 
-console.log();
-for (const [key, value] of Object.entries(cifra)) {
-  texto = texto.replace(key, value);
-  console.log(texto);
+function decodificarTexto() {
+  let texto = document.getElementById("texto-entrada").value;
+  let arrResultado = texto.split(" ");
+  let resultado = [];
+  arrResultado.forEach((str) => {
+    resultado.push(decifrar(str));
+  });
+
+  exibeMensagem(resultado.join(" "));
 }
