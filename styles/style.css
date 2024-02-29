@@ -1,5 +1,6 @@
 :root {
   --font-principal: "Inter", sans-serif;
+  --color-principal: #0a3871;
 }
 
 *:focus {
@@ -47,7 +48,7 @@
   font-weight: 400;
   height: 60vh;
   width: 50vw;
-  color: #0a3871;
+  color: var(--color-principal);
   border-style: none;
   border-color: Transparent;
   overflow: auto;
@@ -85,7 +86,7 @@
   display: flex;
   justify-content: center;
   border: 0;
-  background: #0a3871;
+  background: var(--color-principal);
   color: #ffffff;
   width: 80%;
   height: 100%;
@@ -99,8 +100,8 @@
 .interacao-botoes__decript {
   display: flex;
   justify-content: center;
-  border: 1px solid #0a3871;
-  color: #0a3871;
+  border: 1px solid var(--color-principal);
+  color: var(--color-principal);
   background: #d8dfe8;
   width: 80%;
   height: 100%;
@@ -181,7 +182,7 @@
   display: flex;
   justify-content: center;
   border: 0;
-  background: #0a3871;
+  background: var(--color-principal);
   color: #ffffff;
   width: 38%;
   height: 100%;
@@ -194,10 +195,10 @@
 
 .rodape {
   color: #ffffff;
-  background-color: #0a3871;
+  background-color: var(--color-principal);
   padding: 24px 0;
   text-align: center;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-principal);
   font-size: 1rem;
   font-weight: 400;
   position: absolute;
@@ -212,7 +213,7 @@
 }
 
 .interacao-botoes__decript:hover {
-  background: #0a3871;
+  background: var(--color-principal);
   color: #ffffff;
   opacity: 0.8;
 }

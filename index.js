@@ -35,9 +35,6 @@ function botaoCopiarTexto() {
     });
 }
 
-let strTeste =
-  "pairaibenterns poberr enterncairair enterssenter dentersaifimesober enter tenterr fimesnailimeszaidober enterlenter coberm sufatcenterssober!";
-
 const cifrar = (texto) => {
   let preCifra = {
     e: "enter",
@@ -60,6 +57,7 @@ const decifrar = (texto) => {
   }
   return texto;
 };
+
 function codificarTexto() {
   let texto = document.getElementById("texto-entrada").value;
   exibeMensagem(cifrar(texto));
